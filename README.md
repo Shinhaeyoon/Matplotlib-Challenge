@@ -1,46 +1,38 @@
-# Part 1: WeatherPy
-In this deliverable, you'll create a Python script to visualize the weather of over 500 cities of varying distances from the equator. You'll use the citipy Python libraryLinks to an external site., the OpenWeatherMap APILinks to an external site., and your problem-solving skills to create a representative model of weather across cities.
+# Prepare the Data
+1. Run the provided package dependency and data imports, and then merge the mouse_metadata and study_results DataFrames into a single DataFrame.
+2. Display the number of unique mice IDs in the data, and then check for any mouse ID with duplicate time points. Display the data associated with that mouse ID, and then create a new DataFrame where this data is removed. Use this cleaned DataFrame for the remaining steps.
+3. Display the updated number of unique mice IDs.
 
-For this part, you'll use the WeatherPy.ipynb Jupyter notebook provided in the starter code ZIP file. The starter code will guide you through the process of using your Python coding skills to develop a solution to address the required functionalities.
+# Generate Summary Statistics
+Create a DataFrame of summary statistics. Remember, there is more than one method to produce the results you're after, so the method you use is less important than the result.
 
-To get started, the code required to generate random geographic coordinates and the nearest city to each latitude and longitude combination is provided.
+Your summary statistics should include:
+- A row for each drug regimen. These regimen names should be contained in the index column.
+- A column for each of the following statistics: mean, median, variance, standard deviation, and SEM of the tumor volume.
 
-Requirement 1: Create Plots to Showcase the Relationship Between Weather Variables and Latitude
-To fulfill the first requirement, you'll use the OpenWeatherMap API to retrieve weather data from the cities list generated in the starter code. Next, you'll create a series of scatter plots to showcase the following relationships:
-- Latitude vs. Temperature
-- Latitude vs. Humidity
-- Latitude vs. Cloudiness
-- Latitude vs. Wind Speed
+# Create Bar Charts and Pie Charts
+1. Generate two bar charts. Both charts should be identical and show the total number of time points for all mice tested for each drug regimen throughout the study.
+- Create the first bar chart with the Pandas DataFrame.plot() method.
+- Create the second bar chart with Matplotlib's pyplot methods.
 
-Requirement 2: Compute Linear Regression for Each Relationship
-To fulfill the second requirement, compute the linear regression for each relationship. Separate the plots into Northern Hemisphere (greater than or equal to 0 degrees latitude) and Southern Hemisphere (less than 0 degrees latitude). You may find it helpful to define a function in order to create the linear regression plots.
+2. Generate two pie charts. Both charts should be identical and show the distribution of female versus male mice in the study.
+- Create the first pie chart with the Pandas DataFrame.plot() method.
+- Create the second pie chart with Matplotlib's pyplot methods.
 
-Next, create a series of scatter plots. Be sure to include the linear regression line, the model's formula, and the r values
-You should create the following plots:
-- Northern Hemisphere: Temperature vs. Latitude
-- Southern Hemisphere: Temperature vs. Latitude
-- Northern Hemisphere: Humidity vs. Latitude
-- Southern Hemisphere: Humidity vs. Latitude
-- Northern Hemisphere: Cloudiness vs. Latitude
-- Southern Hemisphere: Cloudiness vs. Latitude
-- Northern Hemisphere: Wind Speed vs. Latitude
-- Southern Hemisphere: Wind Speed vs. Latitude
-After each pair of plots, explain what the linear regression is modeling. Describe any relationships that you notice and any other findings you may uncover.
+# Calculate Quartiles, Find Outliers, and Create a Box Plot
+1. Calculate the final tumor volume of each mouse across four of the most promising treatment regimens: Capomulin, Ramicane, Infubinol, and Ceftamin. Then, calculate the quartiles and IQR, and determine if there are any potential outliers across all four treatment regimens. Use the following substeps:
+- Create a grouped DataFrame that shows the last (greatest) time point for each mouse. Merge this grouped DataFrame with the original cleaned DataFrame.
+- Create a list that holds the treatment names as well as a second, empty list to hold the tumor volume data.
+- Loop through each drug in the treatment list, locating the rows in the merged DataFrame that correspond to each treatment. Append the resulting final tumor volumes for each drug to the empty list.
+- Determine outliers by using the upper and lower bounds, and then print the results.
 
-# Part 2: VacationPy
-In this deliverable, you'll use your weather data skills to plan future vacations. Also, you'll use Jupyter notebooks, the geoViews Python library, and the Geoapify API.
+2. Using Matplotlib, generate a box plot that shows the distribution of the final tumor volume for all the mice in each treatment group. Highlight any potential outliers in the plot by changing their color and style.
 
-The code needed to import the required libraries and load the CSV file with the weather and coordinates data for each city created in Part 1 is provided to help you get started.
 
-Your main tasks will be to use the Geoapify API and the geoViews Python library and employ your Python skills to create map visualizations.
+# Create a Line Plot and a Scatter Plot
+1. Select a mouse that was treated with Capomulin, and generate a line plot of tumor volume versus time point for that mouse.
+2. Generate a scatter plot of tumor volume versus mouse weight for the Capomulin treatment regimen.
 
-To succeed on this deliverable of the assignment, open the VacationPy.ipynb starter code and complete the following steps:
-
-1. Create a map that displays a point for every city in the city_data_df DataFrame as shown in the following image. The size of the point should be the humidity in each city.
-2. Narrow down the city_data_df DataFrame to find your ideal weather condition. For example:
-- A max temperature lower than 27 degrees but higher than 21
-- Wind speed less than 4.5 m/s
-- Zero cloudiness
-3. Create a new DataFrame called hotel_df to store the city, country, coordinates, and humidity.
-4. For each city, use the Geoapify API to find the first hotel located within 10,000 meters of your coordinates.
-5. Add the hotel name and the country as additional information in the hover message for each city on the map as in the following image:
+# Calculate Correlation and Regression
+1. Calculate the correlation coefficient and linear regression model between mouse weight and average tumor volume for the Capomulin treatment.
+2. Plot the linear regression model on top of the previous scatter plot.
